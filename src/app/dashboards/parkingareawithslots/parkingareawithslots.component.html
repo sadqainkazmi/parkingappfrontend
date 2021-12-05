@@ -1,0 +1,107 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+    <a class="navbar-brand" href="/dashboard/customerdashboard">
+      <img src="https://image.shutterstock.com/image-vector/car-automobile-parking-sign-icon-260nw-1738268579.jpg" width="30" height="30" alt="logo">
+      Parking App
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-5" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-list-5">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard/listparkingareaslots">Home <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item  ">
+          <a class="nav-link"  href="/dashboard/listusers" >User</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  href="/dashboard/listfeedbacks" >Feedback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="/dashboard/listbookings" >Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="/dashboard/listroles" >Role</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()" >Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  &nbsp;
+    <button class="btn btn-primary btn-lg" (click)="open(mymodal)" style="margin-top: 10px;margin-bottom: 10px;float: right; margin-right: 20px;"  ><i
+                    class="fa fa-add"></i>Create New Parking Area</button>
+                    &nbsp;
+                    <br>
+  <div class="table-responsive">
+    <table class="table card-table table-vcenter text-nowrap">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Parking Area Name</th>
+          <th>no. of Slots</th>
+         
+          <th>Operations</th>
+          <!-- <th>Delete</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of listofparkingareas ; let i = index">
+          <th>{{i}}</th>
+          <td>{{data?.parkingarea_name}}</td>
+          <td>{{data?.parking_slot}}</td>
+         
+         
+          <td class="btn_txt">
+            <button class="btn btn-danger btn-sm" (click)="delete(data.id,i)" ><i
+                class="fa fa-trash"></i> Delete</button>
+                &nbsp;
+                <!-- <button class="btn btn-primary btn-sm" (click)="reply(mymodal,data.id)" ><i
+                    class="fa fa-pencil"></i> Reply</button> -->
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <ng-template #mymodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Create Parking Area</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="form-label">Parking Name</label>
+              
+                <input class="form-control" ngDefaultControl required [(ngModel)]="pabody.parkingarea_name"  type="text" name="Start Date"
+                  placeholder="parking area name">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="form-label">No. Of Slots</label>
+              
+                <input class="form-control" ngDefaultControl required [(ngModel)]="pabody.parking_slot"  type="number" name="Start time"
+                  placeholder="no. of slots">
+              </div>
+            </div>
+          </div>
+         
+           
+          <div class="row text-center mt_10">
+            <div class="col-md-12">
+              <button class="btn btn-primary" (click)="save()"  type="submit">save !</button>
+            </div>
+          </div>
+          </div>
+        
+        
+        <!--<div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+        </div>-->
+      </ng-template>
+    </div>

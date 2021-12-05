@@ -1,0 +1,75 @@
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="login">
+				<h1 style="text-align: center;">Parking Application</h1>
+				<div class="login__field">
+
+					<input type="text" class="login__input  form-control" name="1" #user_name="ngModel"
+						[(ngModel)]="signupBody.user_name" ngDefaultControl required placeholder="User name">
+				</div>
+				<div class="login__field">
+
+					<input type="text" class="login__input form-control"  name="2" #first_name="ngModel"
+						[(ngModel)]="signupBody.first_name" ngDefaultControl required placeholder="first Name">
+				</div>
+				<div class="login__field">
+
+					<input type="text" class="login__input form-control"  name="3" #last_name="ngModel"
+						[(ngModel)]="signupBody.last_name" ngDefaultControl required placeholder="Last name">
+				</div>
+				<div class="login__field">
+
+					<input type="email" name="4" class="login__input form-control" placeholder="Email"
+						placeholder="Email Address" ngDefaultControl required name="email" #email="ngModel"
+						pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="signupBody.email">
+
+					<div [hidden]="email.valid || email.pristine " class="text-red help-block">
+						<span class="email_notifi">example@gmail.com</span>
+						<div [hidden]="!email.hasError('required')"><span class="email_req">email is
+								required</span></div>
+					</div>
+				</div>
+				<div class="login__field">
+					<select ngDefaultControl required name="role" #roleId="ngModel" class="login__input form-control" [(ngModel)]="signupBody.roleId" >
+						<option value="0" disabled selected hidden> Choose Role</option>
+						<option style="color: black;" *ngFor="let opt of listofroles"  [value]="opt.id" >{{opt.rolename}}</option>
+				  </select>
+					<!-- <input type="text" class="login__input form-control" #password="ngModel"
+						[(ngModel)]="signupBody.password" ngDefaultControl required placeholder="Password"> -->
+				</div>
+				<div class="login__field">
+
+					<input type="password" name="5" class="login__input form-control" required
+						placeholder="Password"  ngDefaultControl required name="password"
+						pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@_$%^&*-]).{8,}$" #password="ngModel"
+						[(ngModel)]="signupBody.password">
+					<div [hidden]="password.valid || password.pristine " class="text-red help-block notifiBox">
+						<p class="valid_txt">Password should be of minimum 8 charachters, conatin at least one upercase
+							letter, one
+							lowercase letter, one
+							number and one special character #?!@_$%^&*-</p>
+						<div [hidden]="!password.hasError('required')"></div>
+						<p class="valid_pass">Password is required</p>
+					</div>
+				</div>
+				<div style="width: 100%;margin: 0 auto;display: block;text-align: center;">
+					<button [disabled]="!email.valid == true || !password.valid == true" (click)="signUp()"
+						class="button login__submit">
+						<span class="button__text">Sign Up Now</span>
+
+					</button>
+				</div>
+				<p style="color:#fff;text-align:center;margin-top:20px;">Already have an acount? <a href="/auth/signin">Sign In now
+						!</a></p>
+			</form>
+
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>
+			<span class="screen__background__shape screen__background__shape2"></span>
+
+		</div>
+	</div>
+</div>

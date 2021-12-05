@@ -1,0 +1,75 @@
+
+  <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+    <a class="navbar-brand" href="/dashboard/customerdashboard">
+      <img src="https://image.shutterstock.com/image-vector/car-automobile-parking-sign-icon-260nw-1738268579.jpg" width="30" height="30" alt="logo">
+      Parking App
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-5" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-list-5">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard/customerdashboard">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="open(mymodal)" >Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()" >Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row" >
+        <div class="col-md-12">
+           
+                <h1 style="text-align: center;">Parking Areas</h1>
+           
+        </div>
+        </div>
+    <div class="row" style="margin-top: 30px;">
+<div *ngFor="let area of listofareas" class="col-md-3">
+    <div (click)="slots(area.id)" style="background-color: rgb(79, 79, 80);width: 100%;height: 250px;margin-top: 10px;margin-bottom: 10px;">
+        <h1 style="text-align: center;"  >{{area.parkingarea_name}}</h1>
+        <img style="width:255px; height: 198px;" src="https://img.freepik.com/free-vector/parking-signal-white-background-vector-illustration_24908-43448.jpg?size=338&ext=jpg">
+    </div>
+</div>
+
+    </div>
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Your Feedback</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="form-label">Feedback</label>
+            <textarea ngDefaultControl required [(ngModel)]="fbbody.user_feedback" class="form-control"  type="textarea" name="fb"
+            placeholder="your Feedback..."></textarea>
+            
+            </div>
+          </div>
+          
+        </div>
+        
+         
+        <div class="row text-center mt_10">
+          <div class="col-md-12">
+            <button class="btn btn-primary" (click)="save()"  type="submit">Submit</button>
+          </div>
+        </div>
+        </div>
+      
+      
+      <!--<div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+      </div>-->
+    </ng-template>
+  </div>
+  

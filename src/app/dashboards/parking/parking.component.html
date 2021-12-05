@@ -1,0 +1,101 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+  <a class="navbar-brand" href="/dashboard/customerdashboard">
+    <img src="https://image.shutterstock.com/image-vector/car-automobile-parking-sign-icon-260nw-1738268579.jpg" width="30" height="30" alt="logo">
+    Parking App
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-5" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar-list-5">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/customerdashboard">Home <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" >Slots</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" >Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="row" >
+      <div class="col-md-12">
+         
+              <h1 style="text-align: center;">Book Your Slot</h1>
+         
+      </div>
+      </div>
+  <div class="row" style="margin-top: 30px;">
+<div *ngFor="let slot of listofslots; let i = index" class="col-md-3">
+  <div  style="background-color: rgb(79, 79, 80);width: 100%;height: 70px;margin-top: 50px;margin-bottom: 50px; border-radius: 5px;">
+      <h1 style="text-align: center;"  >Slot # {{i}}</h1>
+      <div  style="background-color: rgb(96, 96, 238);width: 100%;height: 70px;margin-top: 10px;margin-bottom: 10px; border-radius: 5px;">
+ 
+      <h1 (click)="open(mymodal,slot)" style="text-align: center;" *ngIf="slot.available == true"  >Available</h1>
+      <h1 style="text-align: center;color: crimson;" *ngIf="slot.available ==  false " >Booked</h1>
+      </div>
+  </div>
+</div>
+
+  </div>
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Book Parking Slot</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="form-label">Start Date</label>
+          
+            <input class="form-control" ngDefaultControl required [(ngModel)]="bookingbody.start_date"  type="date" name="Start Date"
+              placeholder="booking start Date">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="form-label">Start Time</label>
+          
+            <input class="form-control" ngDefaultControl required [(ngModel)]="bookingbody.start_time"  type="time" name="Start time"
+              placeholder="booking start time">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="form-label">End Date</label>
+          
+            <input class="form-control"  ngDefaultControl required [(ngModel)]="bookingbody.end_date"   type="date" name="End Date"
+              placeholder="booking end Date">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="form-label">End Time</label>
+          
+            <input class="form-control"  ngDefaultControl required [(ngModel)]="bookingbody.end_time"   type="time" name="End time"
+              placeholder="booking  end time">
+          </div>
+        </div>
+      </div>
+       
+      <div class="row text-center mt_10">
+        <div class="col-md-12">
+          <button class="btn btn-primary" (click)="booking()"  type="submit">Book now !</button>
+        </div>
+      </div>
+      </div>
+    
+    
+    <!--<div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+    </div>-->
+  </ng-template>
+</div>
